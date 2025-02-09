@@ -1,18 +1,12 @@
---[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
--- Rainbow ESP Script for Roblox
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RunService = game:GetService("RunService")
 
--- Function to create rainbow color
 local function rainbowColor()
     local time = tick() * 3
     return Color3.new(math.sin(time), math.sin(time + 2), math.sin(time + 4))
 end
 
--- Function to create ESP outline
 local function createESP(player)
     local highlight = Instance.new("Highlight")
     highlight.FillColor = Color3.new(1, 1, 1) -- Optional: set fill color (white)
