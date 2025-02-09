@@ -9,31 +9,27 @@ end
 
 local function createESP(player)
     local highlight = Instance.new("Highlight")
-    highlight.FillColor = Color3.new(1, 1, 1) -- Optional: set fill color (white)
-    highlight.OutlineColor = rainbowColor() -- Set outline color to rainbow
-    highlight.OutlineTransparency = 0 -- Fully visible outline
+    highlight.FillColor = Color3.new(1, 1, 1)
+    highlight.OutlineColor = rainbowColor()
+    highlight.OutlineTransparency = 0
     highlight.Parent = player.Character or game.Workspace
 
-    -- Update ESP outline when character spawns
     player.CharacterAdded:Connect(function(character)
         highlight.Parent = character
     end)
 
-    -- Update rainbow color continuously
     RunService.RenderStepped:Connect(function()
         highlight.OutlineColor = rainbowColor()
     end)
 end
 
--- Loop through players and create ESP for each
 for _, player in ipairs(Players:GetPlayers()) do
     if player ~= LocalPlayer and player.Character then
         createESP(player)
     end
 end
 
--- Update ESP whenever a new player joins
 Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Wait() -- Wait for character to load
+    player.CharacterAdded:Wait()
     createESP(player)
 end)
